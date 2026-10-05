@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="th"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AI ENERGY SYSTEM – Solar Feasibility</title>
+<style>
+:root{--bg:#000;--cd:#0d1117;--bd:#2a3340;--tx:#f2f6fb;--mu:#a3b1c4;--ac:#2ee6b6;--y:#ffc233;--b:#4cc4ff;--r:#ff7b7b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root:not([data-theme]){--bg:#fff;--cd:#f5f7fa;--bd:#cdd6e2;--tx:#0f1b2a;--mu:#4a5a70;--ac:#067a5e;--y:#8f5f00;--b:#0369a1;--r:#b91c1c}}
+:root[data-theme="light"]{--bg:#fff;--cd:#f5f7fa;--bd:#cdd6e2;--tx:#0f1b2a;--mu:#4a5a70;--ac:#067a5e;--y:#8f5f00;--b:#0369a1;--r:#b91c1c}
+:root[data-theme="dark"]{--bg:#000;--cd:#0d1117;--bd:#2a3340;--tx:#f2f6fb;--mu:#a3b1c4;--ac:#2ee6b6;--y:#ffc233;--b:#4cc4ff;--r:#ff7b7b}
+.tbs{display:flex;gap:6px}.tb{border:1px solid var(--bd);background:var(--bg);color:var(--tx);border-radius:8px;padding:6px 10px;cursor:pointer;font:inherit;font-size:.78rem}.tb.on{border-color:var(--ac);box-shadow:0 0 0 1px var(--ac) inset}
+:root[data-theme="light"] .pb span{filter:brightness(.55) saturate(1.3)}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:14px/1.5 "Noto Sans Thai",system-ui,sans-serif}
+.w{max-width:1100px;margin:0 auto;padding:12px}
+.hd{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 14px;border:1px solid var(--bd);background:var(--cd);border-radius:12px;margin-bottom:12px}
+.hd span{color:var(--mu);font-size:.78rem}
+.kp{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px}
+.main{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,6fr);gap:12px}
+@media(max-width:860px){.kp{grid-template-columns:1fr 1fr}.main{grid-template-columns:1fr}}
+.c{background:var(--cd);border:1px solid var(--bd);border-radius:12px;padding:12px;margin-bottom:12px}
+.c h3{margin:0 0 8px;font-size:.92rem}
+.k{background:var(--cd);border:1px solid var(--bd);border-radius:12px;padding:10px}
+.k small,.m small{display:block;color:var(--mu);font-size:.72rem}.k b{font-size:1.2rem;color:var(--ac)}
+label{display:block;color:var(--mu);font-size:.74rem;margin-top:8px}
+input,select{width:100%;padding:7px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);font:inherit}
+input[type=checkbox]{width:auto}
+.r2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.seg button,.pk,.bt{border:1px solid var(--bd);background:var(--bg);color:var(--tx);border-radius:10px;padding:8px;cursor:pointer;font:inherit}
+.seg .on,.pk.on{border-color:var(--ac);box-shadow:0 0 0 1px var(--ac) inset}
+.pks{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.pk{text-align:left;position:relative}.pk b{display:block;font-size:1.05rem}.pk small{color:var(--mu);display:block}
+.rec{position:absolute;top:-8px;right:8px;background:var(--y);color:#111;font-size:.65rem;padding:1px 7px;border-radius:9px}
+.gr{background:color-mix(in srgb,var(--ac) 12%,var(--cd));border-color:var(--ac)}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+@media(max-width:560px){.g4{grid-template-columns:1fr 1fr}.pks,.g3{grid-template-columns:1fr}}
+.m{border:1px solid var(--bd);border-radius:10px;padding:8px;background:var(--bg)}.m b{font-size:1.05rem}
+.up{border:1px dashed var(--bd);border-radius:10px;padding:10px;text-align:center;color:var(--mu);font-size:.78rem;margin-top:10px}
+.ck{border:1px solid var(--bd);border-radius:10px;padding:8px;margin-top:8px;display:flex;gap:8px;align-items:flex-start}
+.ck small{color:var(--mu);display:block}
+.bts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.bts .bt:first-child{background:#1d6fd6;border:0;color:#fff}.bts .bt:last-child{background:#12a06a;border:0;color:#fff}
+.tag{float:right;font-size:.7rem;color:var(--y)}.tg2{float:right;font-size:.7rem;color:var(--ac)}
+.pb{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+@media(max-width:700px){.pb{grid-template-columns:1fr 1fr}}
+.pb div{border:1px solid var(--bd);border-radius:10px;padding:10px;text-align:center;font-weight:700;background:var(--bg)}.pb small{display:block;font-size:.62rem;color:var(--mu);font-weight:400}
+.lg{display:flex;gap:12px;flex-wrap:wrap;font-size:.72rem;color:var(--mu);margin:4px 0}.lg i{display:inline-block;width:14px;height:8px;margin-right:4px;border:2px solid}
+svg text{fill:var(--mu);font-size:10px}.sc{overflow-x:auto}
+.ft{color:var(--mu);font-size:.75rem;text-align:center;padding:10px}
+</style></head><body><div class="w">
+<div class="hd"><div><b style="letter-spacing:.06em;font-size:28px;line-height:1.2">AI ENERGY SYSTEM</b><br><span>version 1.0</span></div><div class="tbs"><button class="tb" id="th_l" type="button">⚪ พื้นหลังขาว</button><button class="tb on" id="th_d" type="button">⚫ พื้นหลังดำ</button></div><span>ระบบคำนวณความคุ้มค่า · อบรมฟรี 3 ชม. · CRM · ขอใบเสนอราคา · AI ที่ปรึกษา</span></div>
+<div class="kp" id="kp"></div>
+<div class="main"><div>
+<div class="c"><h3>⚙️ ข้อมูลไฟฟ้า & เลือกประเภทระบบ <span class="tag" id="sbt">รัฐอุดหนุน 50,000 บ.</span></h3>
+<label>ประเภทระบบโซลาร์เซลล์ (System Type)</label>
+<div class="seg"><button id="t_on">On-Grid (ไม่มีแบต)</button><button id="t_hy" class="on">Hybrid + แบตเตอรี่</button></div>
+<div id="bt"><label>ขนาดแบตเตอรี่จัดเก็บพลังงาน (ESS Battery) <b class="tg2" id="bpz">+ ฿55,000</b></label>
+<select id="bty"><option value="5.12,55000">LiFePO4 5.12 kWh (ใช้สำรองไฟกลางคืน ~4-6 ชม.) - ฿ 55,000</option><option value="10.24,98000">LiFePO4 10.24 kWh (สำหรับไฟใช้ทั้งคืน ~8-12 ชม.) - ฿ 98,000</option><option value="15.36,142000">LiFePO4 15.36 kWh (สำหรับไฟแอร์ + เครื่องใช้ไฟฟ้า) - ฿ 142,000</option></select>
+<small style="color:var(--mu)">แบตเตอรี่ LiFePO4 รอบการชาร์จ >6,000 รอบ (อายุใช้งาน 12-15 ปี) ปลอดภัยสูง</small></div>
+<div class="up">อัปโหลดไฟล์บิลค่าไฟ (e-Bill / PDF / รูปถ่าย)<br>ระบบ AI OCR จะดึงชื่อ, ยูนิต และค่าไฟใช้ต่อในบิล (ต้นแบบ: ยังไม่ทำงาน กรอกด้วยมือ)</div>
+<label>ชื่อลูกค้า / ผู้ใช้ไฟฟ้า</label><input id="nm" value="คุณสมชาย ใจดี">
+<div class="r2"><div><label>ค่าไฟต่อเดือน (บาท/เดือน)</label><input id="bill" type="number" value="4500"></div>
+<div><label>หน่วยการใช้ไฟ (ยูนิต/เดือน)</label><input id="units" type="number" value="1071"></div></div>
+<div class="r2"><div><label>ระบบเฟสไฟฟ้า</label><select id="ph"><option>1 เฟส (220V)</option><option>3 เฟส (380V)</option></select></div>
+<div><label>ประเภทอัตราค่าไฟ</label><select id="tou"><option value="1">อัตรา TOU (Time of Use)</option><option value="0">อัตราปกติ (ก้าวหน้า)</option></select></div></div>
+<label>โมเดลการใช้ไฟบ้าน / ขายไฟ</label><select id="mdl"><option value="self">เน้นใช้ไฟในบ้านเพื่อลดค่าไฟ (~4.20 บ./หน่วย) [คุ้มค่าสูงสุด]</option><option value="sell">ขายไฟคืนการไฟฟ้าทั้งหมด (2.20 บ./หน่วย) [โมเดลรายได้ประจำ]</option></select>
+<label>สถานที่ติดตั้ง / พิกัด GPS</label><div style="display:flex;gap:6px"><input id="ad" value="8/14 หมู่ 5 เดอะ เอ็กซ์แบนดิโอ คลองหก คลองหลวง ปทุมธานี"><button class="bt" type="button">พิกัด</button></div>
+<div class="ck"><input type="checkbox" id="cb_sub" checked><div>เงินอุดหนุนภาครัฐบาล 50,000 บาท<small>โครงการโซลาร์ภาคประชาชน 1.5 ล้านหลัง</small></div></div>
+<div class="ck"><input type="checkbox" id="cb_loan" checked><div style="flex:1">ผ่อนชำระสินเชื่อรัฐ (ออมสิน / ธอส.)<small>ดอกเบี้ย 3% ต่อปี (แบบลดต้นลดดอก)</small>
+<label>เลือกระยะเวลาผ่อนชำระ</label><select id="ly"><option value="1">1 ปี (12 งวด)</option><option value="2">2 ปี (24 งวด)</option><option value="3">3 ปี (36 งวด)</option><option value="4">4 ปี (48 งวด)</option><option value="5">5 ปี (60 งวด)</option><option value="6">6 ปี (72 งวด)</option><option value="7" selected>7 ปี (84 งวด) [แนะนำ]</option><option value="8">8 ปี (96 งวด)</option><option value="9">9 ปี (108 งวด)</option><option value="10">10 ปี (120 งวด)</option></select></div></div>
+<div class="bts"><button class="bt" type="button">บันทึกเข้า CRM</button><button class="bt" type="button">ออกใบเสนอราคา</button></div>
+</div>
+<div class="c"><h3>🔧 สมมติฐานการคำนวณ (ปรับได้)</h3>
+<div class="r2"><div><label>อัตราค่าไฟปกติ (บาท/kWh)</label><input id="tar" type="number" step="0.1" value="4.2"></div><div><label>ไฟผลิตต่อ kWp (kWh/วัน)</label><input id="yl" type="number" step="0.1" value="5.9"></div></div>
+<div class="r2"><div><label>อัตราประหยัดเฉลี่ย อัตราปกติ/ก้าวหน้า (บาท/kWh)</label><input id="rn" type="number" step="0.001" value="4.784"></div><div><label>อัตราประหยัดเฉลี่ย TOU (บาท/kWh)</label><input id="rt" type="number" step="0.01" value="5.98"></div><div><label>ราคารับซื้อไฟส่วนเกิน (บาท/kWh)</label><input id="ex" type="number" step="0.1" value="2.2"></div></div>
+<div class="r2"><div><label>สัดส่วนใช้ไฟกลางวัน (%)</label><input id="ds" type="number" step="0.1" value="41.2"></div><div><label>เงินอุดหนุนรัฐ (บาท)</label><input id="sub" type="number" value="50000"></div></div>
+<div class="r2"><div><label>ดอกเบี้ยสินเชื่อ (%/ปี)</label><input id="lr" type="number" step="0.5" value="3"></div><div><label>อัตราคิดลด WACC (%)</label><input id="dr" type="number" step="0.5" value="5"></div></div>
+<div class="r2"><div><label>ค่าไฟขึ้นต่อปี (%)</label><input id="esc" type="number" step="0.5" value="1.5"></div><div><label>แผงเสื่อมต่อปี (%)</label><input id="dg" type="number" step="0.1" value="0.3"></div></div>
+<label>ค่า CO₂ ไฟฟ้า (kgCO₂/kWh)</label><input id="ef" type="number" step="0.001" value="0.381"></div>
+</div><div>
+<div class="pks" id="pks"></div>
+<div class="c gr"><h3>🧾 ตารางวิเคราะห์กระแสเงินสดจากสินเชื่อโครงการรัฐ (Loan & Cash Flow) <span class="tg2" id="lo"></span></h3><div class="g4" id="cf"></div></div>
+<div class="c"><h3>📊 วิเคราะห์ความคุ้มค่าทางการเงิน (Feasibility Metrics) <span class="tag" style="color:var(--mu)">ประเมินอายุใช้งาน 25 ปี</span></h3><div class="g3" id="fm"></div></div>
+<div class="c"><h3>กราฟกระแสเงินสดสะสม 25 ปี (Cumulative Cash Flow)</h3><div class="sc"><svg id="c1" viewBox="0 0 640 230" width="100%" style="min-width:480px"></svg></div></div>
+<div class="c"><h3>🌤 การผลิตไฟรายวัน & การชาร์จ/จ่ายไฟแบตเตอรี่ (24-Hour Solar & ESS Profile) <span class="tg2" id="avg"></span></h3>
+<div class="r2"><div><label>สภาพอากาศ / ความเข้มแสง <b class="tag" id="sunb"></b></label><select id="sun"><option value="1">แดดจัดแจ่มใส (100%)</option><option value="0.75">เมฆบางส่วน / ครึ่งฟ้า (75%)</option><option value="0.35">เมฆหนา / ฝนตก (35%)</option></select></div>
+<div><label>ทิศทางการวางแผงหลังคา <b class="tg2" id="dirb"></b></label><select id="dir"><option value="1">ทิศใต้ (South - ประสิทธิภาพ 100%)</option><option value="0.88">ทิศตะวันออก / ตะวันตก (East/West - 88%)</option><option value="0.70">ทิศเหนือ (North - 70%)</option></select></div></div>
+<div class="lg"><span><i style="border-color:var(--y)"></i>กำลังผลิตโซลาร์เซลล์ (kW)</span><span><i style="border-color:var(--ac)"></i>พลังงานชาร์จ/จ่ายของแบตเตอรี่ ESS (kW)</span><span><i style="border-color:var(--b);border-style:dashed"></i>ความต้องการใช้ไฟในบ้าน (kW)</span></div>
+<div class="sc"><svg id="c2" viewBox="0 0 640 230" width="100%" style="min-width:480px"></svg></div><div class="g3" id="h3" style="margin-top:8px"></div></div>
+</div></div>
+<div class="c"><h3 style="text-align:center">แบรนด์สินค้าและพันธมิตรเทคโนโลยีชั้นนำ (Partner Brands)</h3><div class="ft" style="padding:0 0 8px">อุปกรณ์ผ่านการรับรองมาตรฐาน มอก. และระเบียบการไฟฟ้า PEA / MEA</div>
+<div class="pb" id="pbr"></div></div>
+<div class="ft">ผลลัพธ์เป็นการประเมินเบื้องต้น ไม่ใช่ใบเสนอราคา</div>
+</div>
+<script>
+const $=i=>document.getElementById(i),v=i=>parseFloat($(i).value)||0,F=(n,d=0)=>isFinite(n)?Number(n).toLocaleString('en-US',{maximumFractionDigits:d,minimumFractionDigits:d}):'-';
+let hy=true,sel=null;const RF=0.3218,RY=13,SP=5,ESS=0.9,RFS=0.48,RYS=12,OGF=0.75,OGU=0.55,OG={3:110000,5:145000,10:175000};
+const P=[{k:3,b:200000,ph:'1/3 เฟส',rg:'1,500 – 2,500'},{k:5,b:255000,ph:'1/3 เฟส',rg:'2,500 – 5,500'},{k:10,b:328000,ph:'3 เฟส',rg:'6,500 – 12,000'}];
+const LS=[.6,.5,.5,.5,.5,.6,1.2,2.2,1.9,1.4,1.2,1.3,1.5,1.5,1.4,1.2,1.2,1.6,2.6,3.8,3.5,2.6,1.5,.9];
+function sim(p){
+ const k=p.k,[bk,bp]=$('bty').value.split(',').map(Number),fac=v('sun')*v('dir'),G=k*v('yl')*fac,L=v('units')/30;
+ const price=hy?p.b+bp-55000:OG[k],net=Math.max(0,price-($('cb_sub').checked?v('sub'):0));
+ const sell=$('mdl').value==='sell',dir=sell?0:Math.min(G,L*v('ds')/100),sur=G-dir,rate=+$('tou').value?v('rt'):v('rn');
+ const dU=Math.min(G,L*v('ds')/100),dS=sell?k*SP*fac*v('ex')*360/365:G*rate*(hy?1:OGF);
+ const on=$('cb_loan').checked,i=v('lr')/1200,n=v('ly')*12,pmt=on&&net>0?(i?net*i/(1-Math.pow(1+i,-n)):net/n):0;
+ const replL=hy?RF*bp:0,repl=hy?(sell?RFS:RF)*bp:0,ry=sell?RYS:RY;let cum=-net,cfs=[-net],pts=[-net],npv=-net,y1=0,tot=0;
+ for(let y=1;y<=25;y++){const s=dS*365*Math.pow(1-v('dg')/100,y-1)*Math.pow(1+(sell?ESS:v('esc'))/100,y-1),c=s-(y==ry?repl:0);if(y==1)y1=s;tot+=s;cum+=c;cfs.push(c);pts.push(cum);npv+=c/Math.pow(1+v('dr')/100,y)}
+ const gi=1+((1+(sell?ESS:v('esc'))/100)*(1-v('dg')/100)-1)/2,ci=[-net];for(let y=1;y<=25;y++)ci.push(dS*365*Math.pow(gi,y-1)-(y==ry?repl:0));let lo=-.9,hi=5;const nv=r=>ci.reduce((a,c,j)=>a+c/Math.pow(1+r,j),0);for(let j=0;j<60;j++){const m=(lo+hi)/2;nv(m)>0?lo=m:hi=m}
+ const sm=y1/12,ncf=sm-pmt;let pb=null,cp=-net;for(let y=1;y<=60&&pb===null;y++){const f=(y<=v('ly')?sm-pmt:sm)*12;if(f>0&&cp+f>=0)pb=y-1-cp/f;cp+=f}
+ return{k,p,price,net,L,G,dir,sur,y1,sm,pmt,ncf,pb,npv,irr:lo*100,roi:(tot-repl-net)/(net||1)*100,pts,lcoe:(price+replL)/((hy?dU:OGU*G)*365*25||1),co:G*365*v('ef')/1000,bk,fac,on};
+}
+function run(){
+ $('sbt').textContent=$('cb_sub').checked?'รัฐอุดหนุน '+F(v('sub'))+' บ.':'ไม่รับเงินอุดหนุน';
+ $('bt').style.display=hy?'block':'none';$('bpz').textContent='+ ฿'+F(+$('bty').value.split(',')[1]);
+ const B=v('bill'),rec=P.find(p=>{const [a,b]=p.rg.replace(/,/g,'').split(' – ').map(Number);return B>=a&&B<=b})||(B<1500?P[0]:P[2]);
+ if(sel===null)sel=rec.k;const S=P.map(sim),r=S[P.findIndex(p=>p.k==sel)];
+ $('pks').innerHTML=S.map(s=>`<button class="pk ${s.k==sel?'on':''}" data-k="${s.k}">${s.k==rec.k?'<span class="rec">แนะนำ</span>':''}<small>${s.k} kW System · ${s.p.ph}</small><small>เหมาะกับค่าไฟ ${s.p.rg} บ./เดือน</small><small>ราคาปกติ: ${F(s.price)} บ.</small><b style="color:var(--y)">สุทธิ: ฿ ${F(s.net)}*</b></button>`).join('');
+ document.querySelectorAll('.pk').forEach(b=>b.onclick=()=>{sel=+b.dataset.k;run()});
+ const K=(a,b,c)=>`<div class="k"><small>${b}</small><b>${a}</b><small>${c}</small></div>`,ly=v('ly');
+ $('kp').innerHTML=K(r.k+' kW '+(hy?'Hybrid':'On-Grid'),'ขนาดแผง + ระบบ',hy?'แบตเตอรี่ '+r.bk+' kWh':'ระบบ On-Grid')+K(r.pb?F(r.pb,2)+' ปี':'-','ระยะเวลาคืนทุน (PB)',$('cb_sub').checked?'รวมส่วนลดรัฐ '+F(v('sub'))+' บ.':'ไม่รวมส่วนลดรัฐ')+K((r.ncf>=0?'+ ':'- ')+'฿ '+F(Math.abs(r.ncf))+'/เดือน','กระแสเงินสดสุทธิ/เดือน',r.on?'หลังหักค่างวดสินเชื่อ ('+ly+' ปี)':'ไม่มีสินเชื่อ')+K('฿ '+F(r.npv),'ประหยัดสะสม 25 ปี (NPV)','หลังหักเงินลงทุนสุทธิ');
+ const M=(a,b,c)=>`<div class="m"><small>${b}</small><b>${a}</b>${c?'<small>'+c+'</small>':''}</div>`;
+ $('lo').textContent='วงเงินกู้: ฿ '+F(r.on?r.net:0);
+ $('cf').innerHTML=M('฿ '+F(r.pmt)+' /เดือน','ค่างวด/เดือน ('+ly+' ปี)','ดอกเบี้ย '+v('lr')+'% ('+ly*12+' งวด)')+M('฿ '+F(r.sm)+' /เดือน','รายได้/ประหยัดค่าไฟต่อเดือน',($('mdl').value==='sell'?'ขายไฟคืน '+F(v('ex'),2)+' บ./หน่วย':'โหลดลดค่าไฟในบ้าน'))+M((r.ncf>=0?'+ ':'- ')+'฿ '+F(Math.abs(r.ncf))+' /เดือน','เงินคงเหลือ/เดือน (ปีที่ 1-'+ly+')','หลังหักค่างวดสินเชื่อ')+M('฿ '+F(r.sm)+' /เดือน','รายได้สุทธิ (ปีที่ '+(ly+1)+' เป็นต้นไป)','เป็นเจ้าของระบบ 100%');
+ const tr=Math.round(r.co*1000/22.8);
+ $('fm').innerHTML=M(r.pb?F(r.pb,2)+' ปี':'-','ระยะเวลาคืนทุน (PB)','รวมส่วนลดรัฐ '+F($('cb_sub').checked?v('sub'):0)+' บ.')+M(F(r.roi,1)+'%','ผลตอบแทนการลงทุน (ROI)','ผลตอบแทนสุทธิ 25 ปี')+M('฿ '+F(r.npv),'มูลค่าปัจจุบันสุทธิ (NPV)','อัตราคิดลด WACC '+v('dr')+'%')+M(F(r.irr,1)+'%','ผลตอบแทนภายใน (IRR)','คุ้มค่ากว่าดอกเบี้ยเงินฝาก')+M(F(r.lcoe,2)+' บ./ยูนิต','ต้นทุนผลิตไฟโซลาร์ (LCOE)','ถูกกว่าไฟปกติ (~'+F(v('tar'),2)+' บ.)')+M(F(r.co,1)+' ตัน CO₂/ปี','การลดก๊าซเรือนกระจก','เทียบเท่าปลูกต้นไม้ ~'+F(tr)+' ต้น');
+ line($('c1'),[{p:r.pts,c:'var(--ac)',a:1,d:1}],25,i=>'ปีที่ '+i,5);
+ const pk=r.k*.95*r.fac,sl=[],es=[],ld=LS.map(x=>x*r.L/35.7);
+ for(let h=0;h<24;h++){sl.push(h>=6&&h<=19?pk*Math.exp(-Math.pow(h-12.5,2)/12.5):0);const q=hy?r.bk/5.12:0;es.push(q*(h>=9&&h<=15?1:h==8||h==16?.4:h>=18&&h<=22?1.3:h==17||h==23?.6:0))}
+ line($('c2'),[{p:sl,c:'var(--y)',a:1,d:1},{p:es,c:'var(--ac)',a:1},{p:ld,c:'var(--b)',dash:1}],23,h=>String(h).padStart(2,'0')+':00',2);
+ $('sunb').textContent=['แดดจัด (100%)','เมฆบางส่วน (75%)','เมฆหนา (35%)'][$('sun').selectedIndex]||'';$('dirb').textContent=['ทิศใต้ (100%)','ตะวันออก/ตะวันตก (88%)','ทิศเหนือ (70%)'][$('dir').selectedIndex]||'';$('avg').textContent='ผลิตไฟเฉลี่ย '+F(r.G,1)+' kWh/วัน';
+ $('h3').innerHTML=M(F(pk,2)+' kW','กำลังผลิตสูงสุด (Peak)')+M(F(r.dir,1)+' kWh/วัน','นำไปใช้ในบ้านเพื่อลดค่าไฟ')+M(F(r.sur,1)+' kWh/วัน','ชาร์จแบตเตอรี่ / ไฟส่วนเกิน');
+}
+function line(s,ser,n,xl,st){const W=640,H=230,L=58,B=26,T=8,R=8,all=ser.flatMap(a=>a.p),mn=Math.min(...all,0),mx=Math.max(...all,.001),rg=(mx-mn)||1;
+ const X=i=>L+i*(W-L-R)/n,Y=x=>T+(mx-x)*(H-T-B)/rg;let o='';
+ for(let i=0;i<=5;i++){const t=mn+rg*i/5;o+=`<line x1="${L}" x2="${W-R}" y1="${Y(t)}" y2="${Y(t)}" stroke="var(--bd)"/><text x="${L-5}" y="${Y(t)+3}" text-anchor="end">${Math.abs(t)>=1000?F(t,0):F(t,1)}</text>`}
+ for(let i=0;i<=n;i+=st)o+=`<text x="${X(i)}" y="${H-8}" text-anchor="middle">${xl(i)}</text>`;
+ ser.forEach(a=>{const pts=a.p.map((y,i)=>X(i)+','+Y(y)).join(' ');
+  if(a.a)o+=`<polygon points="${X(0)},${Y(0)} ${pts} ${X(a.p.length-1)},${Y(0)}" fill="${a.c}" opacity=".2"/>`;
+  o+=`<polyline fill="none" stroke="${a.c}" stroke-width="2" ${a.dash?'stroke-dasharray="4 3"':''} points="${pts}"/>`;
+  if(a.d)o+=a.p.map((y,i)=>`<circle cx="${X(i)}" cy="${Y(y)}" r="2.4" fill="${a.c}"/>`).join('')});
+ s.innerHTML=o}
+$('pbr').innerHTML=[['SPNM','ENERGY','#7aa2ff'],['Deye','Inverter','#ff7a8a'],['solis','Technologies','#ffc233'],['HUAWEI','FusionSolar','#ff4d4d'],['SIGENERGY','SigenStor','#22d3a5'],['LONGi','Solar Panel','#7aa2ff'],['Jinko','N-Type TopCon','#3ddc84'],['Trinasolar','Vertex S+','#5aa9ff'],['JA SOLAR','DeepBlue','#5aa9ff'],['AIKO','ABC Module','#ff9a3c'],['INTERLINK','Solar Cable','#a78bfa'],['BlueBird','Energy','#5aa9ff'],['LVTOPSUN','LiFePO4','#ffb020'],['Solar AI','Platform','#38bdf8'],['CLEAN ENERGY','Brighter Tomorrow','#22d3a5']].map(a=>`<div><span style="color:${a[2]}">${a[0]}</span><small>${a[1]}</small></div>`).join('');
+function setT(h){hy=h;sel=null;$('t_hy').classList.toggle('on',h);$('t_on').classList.toggle('on',!h);run()}
+$('t_hy').onclick=()=>setT(true);$('t_on').onclick=()=>setT(false);
+document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',()=>{
+ if(e.id=='bill'){$('units').value=Math.round(v('bill')/v('tar'));sel=null}
+ else if(e.id=='units'){$('bill').value=Math.round(v('units')*v('tar'));sel=null}
+ else if(e.id=='tar'){$('bill').value=Math.round(v('units')*v('tar'))}
+ run()}));
+function setTh(t){document.documentElement.dataset.theme=t;$('th_l').classList.toggle('on',t==='light');$('th_d').classList.toggle('on',t==='dark');try{localStorage.setItem('th',t)}catch(e){}}
+$('th_l').onclick=()=>setTh('light');$('th_d').onclick=()=>setTh('dark');
+let t0='dark';try{t0=localStorage.getItem('th')||'dark'}catch(e){}
+setTh(t0);run();
+</script></body></html>
